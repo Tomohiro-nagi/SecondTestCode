@@ -10,6 +10,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	while (DxLib::ProcessMessage() == 0) {
 		DxLib::ScreenFlip();
 		DrawString(100, 100, L"hello wold",0xffffff);
+		//drii
 	}
 	return 0;
 }
