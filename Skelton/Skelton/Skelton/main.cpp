@@ -1,20 +1,25 @@
 #include<DxLib.h>
+
 #include<cassert>
 #include<string>
 #include<sstream>
 #include<iomanip>
 #include"Debug.h"
 
-struct Vector2 {
+
+struct Vector2
+{
 	float x, y;
 };
 
 using Position2 = Vector2;
 
+
 struct Rect
 {
 	Position2 center;
 	float w, h;
+struct Rect {
 
 	float Left()const {
 		return center.x - w;
@@ -25,6 +30,7 @@ struct Rect
 	float TOP()const {
 		return center.y - h;
 	}
+
 	float DOWN()const {
 		return center.y + h;
 	}
@@ -36,13 +42,18 @@ struct Rect
 	}
 
 };
+	
+
+}; 
+
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-	SetWindowText(L"2016003_��ؒq��");
+	SetWindowText(L"2016003_ˆî–Ø’q‘å");
 	DxLib::ChangeWindowMode(true);
 	DxLib_Init();
 	DxLib::SetDrawScreen(DX_SCREEN_BACK);
 	Rect rcA = { 200,200,50,50 };
+
 	//DxLib::SetWindowText(L"Ninja Sprit");
 	int graphH[6] = {};
 	//wchar_t path[100];
@@ -64,9 +75,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	
 	char keystate[256];
 	unsigned int frame = 0;
+
 	while (DxLib::ProcessMessage() == 0) {
 		ClearDrawScreen();
 		DrawString(100, 100, L"hello wold",0xffffff);
+
 		GetHitKeyStateAll(keystate);
 		constexpr float speed = 4.0f;
 		if (keystate[KEY_INPUT_LEFT])
@@ -103,7 +116,11 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//wsprintf(out, sizeof(out), "x=%d,y=%d\n");
 		oss << "x=" << rcA.center.x << ",y="<<rcA.center.y<< std::endl;
 		OutputDebugStringA(oss.str().c_str());
-	}
+
+	
+
+	
+	
 	Debug::Output("Main Loop is end");
 	DxLib_End();
 
