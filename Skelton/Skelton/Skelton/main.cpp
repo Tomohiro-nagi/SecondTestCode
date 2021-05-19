@@ -103,9 +103,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		//wsprintf(out, sizeof(out), "x=%d,y=%d\n");
 		oss << "x=" << rcA.center.x << ",y="<<rcA.center.y<< std::endl;
 		OutputDebugStringA(oss.str().c_str());
-		//drii
 	}
 	Debug::Output("Main Loop is end");
 	DxLib_End();
+
 	return 0;
 }
