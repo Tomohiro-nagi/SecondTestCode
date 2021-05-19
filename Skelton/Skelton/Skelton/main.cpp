@@ -2,6 +2,8 @@
 #include<cassert>
 #include<string>
 #include<sstream>
+#include<iomanip>
+#include"Debug.h"
 
 struct Vector2 {
 	float x, y;
@@ -36,17 +38,24 @@ struct Rect
 };
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+	SetWindowText(L"2016003_ˆî–Ø’q‘å");
 	DxLib::ChangeWindowMode(true);
 	DxLib_Init();
 	DxLib::SetDrawScreen(DX_SCREEN_BACK);
 	Rect rcA = { 200,200,50,50 };
 	//DxLib::SetWindowText(L"Ninja Sprit");
 	int graphH[6] = {};
-	wchar_t path[100];
+	//wchar_t path[100];
+	
 	for (int i = 0; i < 6; ++i) {
+		std::wostringstream pathOss;
+		
 
-		wsprintf(path, L"../../../Asset/run3/adventurer-run3-%02d.png",i);
-		graphH[i] = DxLib::LoadGraph(path);
+		pathOss << L"../../../Asset/run3/adventurer-run3-";
+		pathOss << std::setw(2) << std::setfill(L'0');
+		pathOss << i << L".png";
+		//wsprintf(path, L"../../../Asset/run3/adventurer-run3-%02d.png",i);
+		graphH[i] = DxLib::LoadGraph(pathOss.str().c_str());
 		assert(graphH[i]!= -1);
 
 	}
@@ -88,13 +97,15 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 		ScreenFlip();
 		frame = (frame + 1) % 60;
-		//DrawGraph(10, 10, graphH, true);
+
 		std::ostringstream oss;
 		//wchar_t out[32];
 		//wsprintf(out, sizeof(out), "x=%d,y=%d\n");
-		/*oss << "x=" << endl;
-		OutputDebugStringA(out);*/
+		oss << "x=" << rcA.center.x << ",y="<<rcA.center.y<< std::endl;
+		OutputDebugStringA(oss.str().c_str());
 		//drii
 	}
+	Debug::Output("Main Loop is end");
+	DxLib_End();
 	return 0;
 }
